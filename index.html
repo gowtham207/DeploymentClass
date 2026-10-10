@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Marlow &amp; Co. | Business support for growing companies</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:wght@400;600&display=swap">
+    <style>
+        :root {
+            --bg: #F2F5F3;
+            --surface: #FFFFFF;
+            --ink: #10261F;
+            --muted: #4D625A;
+            --line: #CFDAD5;
+            --brand: #14403A;
+            --brand-ink: #FFFFFF;
+            --accent: #E3A82B;
+            --head: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+            --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        @media (prefers-color-scheme:dark) {
+            :root:not([data-theme="light"]) {
+                --bg: #0E1B17;
+                --surface: #15271F;
+                --ink: #EAF1EE;
+                --muted: #9DB2A9;
+                --line: #27403A;
+                --brand: #E3A82B;
+                --brand-ink: #10261F;
+                --accent: #E3A82B;
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --bg: #0E1B17;
+            --surface: #15271F;
+            --ink: #EAF1EE;
+            --muted: #9DB2A9;
+            --line: #27403A;
+            --brand: #E3A82B;
+            --brand-ink: #10261F;
+            --accent: #E3A82B;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(72px + env(safe-area-inset-top, 0px))
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font: 400 1.125rem/1.65 var(--body)
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--head);
+            line-height: 1.1;
+            margin: 0;
+            letter-spacing: -.02em
+        }
+
+        a {
+            color: inherit
+        }
+
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 3px
+        }
+
+        .wrap {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 24px
+        }
+
+        header {
+            position: sticky;
+            top: env(safe-area-inset-top, 0px);
+            z-index: 10;
+            background: var(--bg);
+            border-bottom: 1px solid var(--line)
+        }
+
+        header .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px
+        }
+
+        .logo {
+            font: 800 1.3rem var(--head);
+            text-decoration: none;
+            letter-spacing: -.03em
+        }
+
+        nav {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            font: 500 .95rem var(--head)
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--muted)
+        }
+
+        nav a:hover {
+            color: var(--ink)
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--brand);
+            color: var(--brand-ink);
+            font: 700 1rem var(--head);
+            padding: 14px 26px;
+            border-radius: 6px;
+            text-decoration: none
+        }
+
+        .btn:hover {
+            filter: brightness(1.12)
+        }
+
+        .btn.ghost {
+            background: transparent;
+            color: var(--ink);
+            border: 2px solid var(--ink)
+        }
+
+        nav .btn {
+            padding: 9px 18px;
+            color: var(--brand-ink)
+        }
+
+        .hero {
+            padding: 96px 0 80px
+        }
+
+        .hero h1 {
+            font-size: clamp(2.6rem, 7.5vw, 5.6rem);
+            font-weight: 800;
+            max-width: 14ch
+        }
+
+        .hero p {
+            max-width: 34em;
+            font-size: 1.3rem;
+            color: var(--muted);
+            margin: 28px 0 36px
+        }
+
+        .hero .actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap
+        }
+
+        .hero .mark {
+            display: inline-block;
+            width: 72px;
+            height: 8px;
+            background: var(--accent);
+            margin-bottom: 28px
+        }
+
+        .band {
+            background: var(--brand);
+            color: var(--brand-ink);
+            padding: 28px 0
+        }
+
+        .band ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px
+        }
+
+        .band strong {
+            display: block;
+            font: 800 2rem var(--head);
+            letter-spacing: -.02em
+        }
+
+        .band span {
+            font-size: .95rem;
+            opacity: .85
+        }
+
+        @media (prefers-color-scheme:dark) {
+            :root:not([data-theme="light"]) .band {
+                background: var(--surface);
+                color: var(--ink)
+            }
+        }
+
+        :root[data-theme="dark"] .band {
+            background: var(--surface);
+            color: var(--ink)
+        }
+
+        section {
+            padding: 88px 0
+        }
+
+        .sec-title {
+            font-size: clamp(1.9rem, 4vw, 2.8rem);
+            font-weight: 700;
+            max-width: 18ch;
+            margin-bottom: 12px
+        }
+
+        .sec-sub {
+            color: var(--muted);
+            max-width: 36em;
+            margin: 0 0 48px
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            border-top: 2px solid var(--ink)
+        }
+
+        .services article {
+            padding: 28px 28px 32px 0;
+            border-bottom: 1px solid var(--line)
+        }
+
+        .services h3 {
+            font-size: 1.35rem;
+            margin-bottom: 10px
+        }
+
+        .services p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 1.05rem
+        }
+
+        .about {
+            background: var(--surface)
+        }
+
+        .about .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: start
+        }
+
+        .about blockquote {
+            margin: 0;
+            padding-left: 24px;
+            border-left: 6px solid var(--accent);
+            font: 600 1.5rem/1.4 var(--body)
+        }
+
+        .about blockquote cite {
+            display: block;
+            margin-top: 16px;
+            font: 500 .95rem var(--head);
+            color: var(--muted);
+            font-style: normal
+        }
+
+        @media (max-width:760px) {
+            .about .grid {
+                grid-template-columns: 1fr;
+                gap: 32px
+            }
+
+            nav a:not(.btn) {
+                display: none
+            }
+
+            .hero {
+                padding: 64px 0 56px
+            }
+
+            section {
+                padding: 64px 0
+            }
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 32px;
+            counter-reset: s;
+            padding: 0;
+            list-style: none;
+            margin: 0
+        }
+
+        .steps li {
+            counter-increment: s;
+            border-top: 2px solid var(--ink);
+            padding-top: 16px
+        }
+
+        .steps li::before {
+            content: "Step " counter(s);
+            font: 700 .9rem var(--head);
+            color: var(--muted)
+        }
+
+        .steps h3 {
+            font-size: 1.25rem;
+            margin: 6px 0 8px
+        }
+
+        .steps p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 1.02rem
+        }
+
+        .contact {
+            background: var(--brand);
+            color: var(--brand-ink)
+        }
+
+        .contact h2 {
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            font-weight: 800;
+            max-width: 16ch
+        }
+
+        .contact p {
+            max-width: 32em;
+            opacity: .9
+        }
+
+        .contact .btn {
+            background: var(--accent);
+            color: #10261F;
+            margin-top: 12px
+        }
+
+        .contact .info {
+            margin-top: 36px;
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            font: 500 1rem var(--head)
+        }
+
+        @media (prefers-color-scheme:dark) {
+            :root:not([data-theme="light"]) .contact {
+                background: var(--surface);
+                color: var(--ink)
+            }
+        }
+
+        :root[data-theme="dark"] .contact {
+            background: var(--surface);
+            color: var(--ink)
+        }
+
+        footer {
+            padding: 28px 0;
+            font-size: .9rem;
+            color: var(--muted)
+        }
+
+        footer .wrap {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px
+        }
+
+        @media (prefers-reduced-motion:reduce) {
+            html {
+                scroll-behavior: auto
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="wrap">
+            <a class="logo" href="#top">Marlow &amp; Co.</a>
+            <nav aria-label="Main">
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#process">How we work</a>
+                <a class="btn" href="#contact">Get in touch</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="top">
+        <div class="hero">
+            <div class="wrap">
+                <div class="mark" aria-hidden="true"></div>
+                <h1>Run the business. We'll handle the rest.</h1>
+                <p>Marlow &amp; Co. takes on the bookkeeping, compliance and planning that slow small companies down, so
+                    you can spend your time on customers.</p>
+                <div class="actions">
+                    <a class="btn" href="#contact">Book a free consultation</a>
+                    <a class="btn ghost" href="#services">See our services</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="band">
+            <div class="wrap">
+                <ul>
+                    <li><strong>15+ years</strong><span>supporting small businesses</span></li>
+                    <li><strong>400+</strong><span>companies served</span></li>
+                    <li><strong>1 business day</strong><span>average reply time</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <section id="services">
+            <div class="wrap">
+                <h2 class="sec-title">What we do for you</h2>
+                <p class="sec-sub">Pick one service or have us manage all of it. Fixed monthly fees, no surprises.</p>
+                <div class="services">
+                    <article>
+                        <h3>Accounting &amp; bookkeeping</h3>
+                        <p>Accurate books, monthly reports and tax filings handled on time.</p>
+                    </article>
+                    <article>
+                        <h3>Business planning</h3>
+                        <p>Budgets, forecasts and growth plans built around your real numbers.</p>
+                    </article>
+                    <article>
+                        <h3>Compliance &amp; licensing</h3>
+                        <p>Registrations, renewals and paperwork tracked so nothing lapses.</p>
+                    </article>
+                    <article>
+                        <h3>Payroll &amp; HR support</h3>
+                        <p>Pay your team correctly and keep clear records for every hire.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="wrap grid">
+                <div>
+                    <h2 class="sec-title">A small team that picks up the phone</h2>
+                    <p>We started Marlow &amp; Co. because owners kept telling us the same thing: they couldn't get a
+                        straight answer from their advisor. We keep our client list small so every owner deals with the
+                        same people each time.</p>
+                </div>
+                <blockquote>
+                    They found a mistake in our books on day two, and we've slept better ever since.
+                    <cite>Priya N., owner of a family-run bakery</cite>
+                </blockquote>
+            </div>
+        </section>
+
+        <section id="process">
+            <div class="wrap">
+                <h2 class="sec-title">How we work together</h2>
+                <p class="sec-sub">Getting started takes about a week.</p>
+                <ol class="steps">
+                    <li>
+                        <h3>Talk</h3>
+                        <p>A free 30-minute call to understand your business and goals.</p>
+                    </li>
+                    <li>
+                        <h3>Review</h3>
+                        <p>We look at your current books and tell you what needs fixing.</p>
+                    </li>
+                    <li>
+                        <h3>Agree a plan</h3>
+                        <p>You get a clear scope and a fixed monthly price in writing.</p>
+                    </li>
+                    <li>
+                        <h3>Get going</h3>
+                        <p>We take over the work and send you a report every month.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="wrap">
+                <h2>Ready to hand it over?</h2>
+                <p>Tell us about your business and we'll reply within one business day.</p>
+                <a class="btn" href="mailto:hello@marlowandco.example">Email us</a>
+                <div class="info">
+                    <span>hello@marlowandco.example</span>
+                    <span>+1 (555) 010-2040</span>
+                    <span>Mon to Fri, 9am to 5pm</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <span>&copy; 2026 Marlow &amp; Co.</span>
+            <span>All rights reserved.</span>
+        </div>
+    </footer>
+</body>
+
+</html>
